@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>nl.svb.dms.assessment</groupId>
-	<artifactId>lease-a-car</artifactId>
+	<artifactId>lease</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lease-a-car</name>
-	<description>The Lease-a-car API is REST API which allows to maintain vehicle versions, customers and other data needed to service a broker.  The end-users of the Lease-a-car API are:  Brokers which calculate the leaserate for a customer, and maintain customer data. Leasing company which maintains data to make a accurate calculation.</description>
+	<name>lease</name>
+	<description>The Lease API is a REST API which allows to maintain vehicle versions.</description>
 	<url/>
 	<scm>
 		<developerConnection>scm:git:https://github.com/CharlotteHermans/DMSAssesment</developerConnection>

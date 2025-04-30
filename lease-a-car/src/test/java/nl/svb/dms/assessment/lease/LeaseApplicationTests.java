@@ -1,10 +1,10 @@
-package nl.svb.dms.assessment.lease_a_car;
+package nl.svb.dms.assessment.lease;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LeaseACarApplicationTests {
+class LeaseApplicationTests {
 
 	@Test
 	void contextLoads() {
