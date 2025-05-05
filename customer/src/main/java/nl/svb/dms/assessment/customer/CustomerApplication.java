@@ -1,4 +1,4 @@
-package nl.svb.dms.assessment.lease;
+package nl.svb.dms.assessment.customer;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
@@ -9,15 +9,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "lease a car api", version = "1.0", description = "API voor het opvragen van lease auto gegevens",
+@OpenAPIDefinition(info = @Info(title = "customer api", version = "1.0", description = "API voor het opvragen van klant gegevens",
 		contact = @Contact(name = "IT Sociaal")),
-		tags = {@Tag(name = "lease-controller")
+		tags = {@Tag(name = "customer-controller")
 		})
 @ComponentScan(basePackages = {"nl.svb.dms"})
-public class LeaseApplication {
+
+public class CustomerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LeaseApplication.class, args);
+		SpringApplication.run(CustomerApplication.class, args);
 	}
 
 }

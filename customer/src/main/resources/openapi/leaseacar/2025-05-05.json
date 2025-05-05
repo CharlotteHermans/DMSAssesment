@@ -1,0 +1,197 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "lease a car api",
+    "description": "API voor het opvragen van lease auto gegevens",
+    "contact": {
+      "name": "IT Sociaal"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "lease-controller"
+    }
+  ],
+  "paths": {
+    "/v1/cars": {
+      "get": {
+        "tags": [
+          "lease-controller"
+        ],
+        "summary": "Get car info for the given carId.",
+        "description": "Get car info for leasing a car",
+        "operationId": "getLeaseRate",
+        "parameters": [
+          {
+            "name": "CID",
+            "in": "header",
+            "description": "Correlation ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "make",
+            "in": "query",
+            "description": "Make of the car",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Make of the car",
+              "example": "Lexus"
+            },
+            "example": "Lexus"
+          },
+          {
+            "name": "model",
+            "in": "query",
+            "description": "Model of the car",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Model of the car",
+              "example": "IS250"
+            },
+            "example": "IS250"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "Version of the model",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Version of the model",
+              "example": "Sport"
+            },
+            "example": "Sport"
+          },
+          {
+            "name": "duration",
+            "in": "query",
+            "description": "Duration of the lease contract in months",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Duration of the lease contract in months",
+              "example": 24,
+              "maximum": 60,
+              "minimum": 12
+            },
+            "example": 24
+          },
+          {
+            "name": "mileage",
+            "in": "query",
+            "description": "Mileage (per year) of the lease contract",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Mileage (per year) of the lease contract",
+              "example": 10000,
+              "minimum": 10000
+            },
+            "example": 10000
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "de aanvraag is succesvol verwerkt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeaseRateResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "token ontbreekt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "geen data is gevonden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "onverwachte fout opgetreden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LeaseRateResponseDto": {
+        "type": "object",
+        "properties": {
+          "leaseRate": {
+            "type": "number",
+            "description": "leaseRate per month"
+          }
+        }
+      },
+      "ApiErrorResponse": {
+        "type": "object",
+        "description": "Generieke Error Message",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "description": "HTTP error code",
+            "readOnly": true
+          },
+          "titel": {
+            "type": "string",
+            "description": "HTTP error naam",
+            "readOnly": true
+          },
+          "detail": {
+            "type": "string",
+            "description": "Error omschrijving",
+            "readOnly": true
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Error lijst",
+            "readOnly": true
+          }
+        }
+      }
+    }
+  }
+}
